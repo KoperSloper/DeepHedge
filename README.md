@@ -22,3 +22,15 @@ We model the hedging task as an optimization problem under **Exponential Utility
 * **Policy:** Instead of outputting a raw position, the network outputs **Upper and Lower Bounds** ($b_l, b_u$). The agent only trades if the current position drifts outside these bounds.
 
 $$\delta_{new} = \text{clamp}(\delta_{old}, b_l, b_u)$$
+
+## 🛠️ Installation
+
+This project requires Python 3.9+ and the JAX ecosystem.
+
+```bash
+# Clone the repository
+git clone [https://github.com/KoperSloper/DeepHedge.git](https://github.com/KoperSloper/DeepHedge.git)
+cd DeepHedge
+
+# Install dependencies (JAX, Flax, Optax, Matplotlib, Tqdm)
+pip install jax jaxlib flax optax matplotlib tqdm
