@@ -6,10 +6,9 @@ from tqdm import tqdm
 import sys
 import os
 
-# Ensure these match your local file structure
 from data import MarketConfig, get_datasets
 from policy import DeepHedgingPolicy
-# Updated imports to include save/load
+
 from trainer import create_train_state, train_step, eval_step, save_params, load_params
 from utils import entropic_loss, calculate_indifference_price
 
@@ -101,8 +100,6 @@ def main():
         
         print(f"Epoch {epoch+1} | Train Loss: {avg_train_loss:.5f} | Val Loss: {val_loss:.5f}")
 
-        # --- EARLY STOPPING LOGIC ---
-        # "If val loss_t+1 is not smaller than 0.99 x val_loss_t increase patience"
         target_to_beat = best_val_loss * IMPROVEMENT_RATIO
         
         if val_loss < target_to_beat:
@@ -137,7 +134,6 @@ def main():
     print(f"Indifference Price (p0):     {price_p0:.4f}")
     print(f"Premium Charged (p0 - RN):   {price_p0 - bs_price_mc:.4f}")
     
-    # --- 5. Visualization ---
     plt.figure(figsize=(12, 5))
     
     plt.subplot(1, 2, 1)
