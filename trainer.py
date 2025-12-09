@@ -28,14 +28,12 @@ def save_params(state, filename="best_model.msgpack"):
     """Saves the model parameters to a file."""
     with open(filename, "wb") as f:
         f.write(serialization.to_bytes(state.params))
-    # print(f"Model saved to {filename}")
 
 def load_params(state, filename="best_model.msgpack"):
     """Loads parameters from a file into the state."""
     with open(filename, "rb") as f:
         bytes_data = f.read()
     
-    # We use the current state.params as a template structure
     new_params = serialization.from_bytes(state.params, bytes_data)
     return state.replace(params=new_params)
 
